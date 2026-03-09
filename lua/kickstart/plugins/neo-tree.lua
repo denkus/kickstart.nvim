@@ -13,12 +13,19 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    --{ '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree reveal<CR>', desc = 'Open Neotree', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
   opts = {
+    clipboard = {
+      sync = 'universal', -- Set to "universal" for multi-instance support, "global" otherwise
+    },
     filesystem = {
+      filtered_items = {
+        visible = true,
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',

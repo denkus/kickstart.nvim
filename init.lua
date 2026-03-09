@@ -255,32 +255,32 @@ rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'nvim-tree/nvim-web-devicons', -- optional, but recommended
-    },
-    lazy = false, -- neo-tree will lazily load itself
-    ---@module 'neo-tree'
-    ---@type neotree.Config
-    opts = {
-      clipboard = {
-        sync = 'universal', -- Set to "universal" for multi-instance support, "global" otherwise
-      },
-      filesystem = {
-        filtered_items = {
-          visible = true,
-        },
-      },
-    },
-    keys = {
-      { '<leader>e', ':Neotree reveal<CR>', desc = 'Open Neotree', silent = true },
-    },
-    -- config = function() vim.keymap.set('n', '<leader>e', ':Neotree reveal<CR>', { silent = true, desc = 'Open Neotree' }) end,
-  },
+  -- {
+  --   'nvim-neo-tree/neo-tree.nvim',
+  --   branch = 'v3.x',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'MunifTanjim/nui.nvim',
+  --     'nvim-tree/nvim-web-devicons', -- optional, but recommended
+  --   },
+  --   lazy = false, -- neo-tree will lazily load itself
+  --   ---@module 'neo-tree'
+  --   ---@type neotree.Config
+  --   opts = {
+  --     clipboard = {
+  --       sync = 'universal', -- Set to "universal" for multi-instance support, "global" otherwise
+  --     },
+  --     filesystem = {
+  --       filtered_items = {
+  --         visible = true,
+  --       },
+  --     },
+  --   },
+  --   keys = {
+  --     { '<leader>e', ':Neotree reveal<CR>', desc = 'Open Neotree', silent = true },
+  --   },
+  --   -- config = function() vim.keymap.set('n', '<leader>e', ':Neotree reveal<CR>', { silent = true, desc = 'Open Neotree' }) end,
+  -- },
 
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
   { 'NMAC427/guess-indent.nvim', opts = {} },
@@ -944,7 +944,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
