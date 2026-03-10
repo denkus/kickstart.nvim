@@ -633,7 +633,28 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              -- venvPath = '.', -- Directory containing virtual envs
+              -- venv = '.venv', -- Name of your virtual environment
+              analysis = {
+                typeCheckingMode = 'basic',
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                -- diagnosticMode = 'openFilesOnly',
+                diagnosticMode = 'workspace',
+                -- autoImportCompletions = true,
+                -- completeFunctionParens = true,
+                reportUnknownVariableType = false,
+                reportUnknownParameterType = false,
+                reportUnknownArgumentType = false,
+                reportUnknownMemberType = false,
+                -- reportUnknownLambdaType = false,
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
