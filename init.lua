@@ -633,18 +633,16 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        pyright = {
+        basedpyright = {
           settings = {
-            python = {
-              -- venvPath = '.', -- Directory containing virtual envs
-              -- venv = '.venv', -- Name of your virtual environment
+            basedpyright = {
               analysis = {
                 typeCheckingMode = 'basic',
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 -- diagnosticMode = 'openFilesOnly',
                 diagnosticMode = 'workspace',
-                -- autoImportCompletions = true,
+                autoImportCompletions = true,
                 -- completeFunctionParens = true,
                 reportUnknownVariableType = false,
                 reportUnknownParameterType = false,
@@ -652,6 +650,18 @@ require('lazy').setup({
                 reportUnknownMemberType = false,
                 -- reportUnknownLambdaType = false,
               },
+            },
+          },
+        },
+        ruff = {
+          on_attach = function(client)
+            -- Keep hover and most language intelligence on basedpyright.
+            client.server_capabilities.hoverProvider = false
+          end,
+          init_options = {
+            settings = {
+              organizeImports = true,
+              fixAll = true,
             },
           },
         },
