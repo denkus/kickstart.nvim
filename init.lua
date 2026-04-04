@@ -801,12 +801,9 @@ require('lazy').setup({
     ---@type blink.cmp.Config
     opts = {
       keymap = {
-        -- 'default' (recommended) for mappings similar to built-in completions
-        --   <c-y> to accept ([y]es) the completion.
-        --    This will auto-import if your LSP supports it.
-        --    This will expand snippets if the LSP sent a snippet.
-        -- 'super-tab' for tab to accept
-        -- 'enter' for enter to accept
+        -- 'default' for built-in-style completions using <c-y> to accept
+        -- 'super-tab' for VS Code-style tab to accept
+        -- 'enter' for IDE-style enter to accept while keeping tab completion behavior
         -- 'none' for no mappings
         --
         -- For an understanding of why the 'default' preset is recommended,
@@ -822,7 +819,7 @@ require('lazy').setup({
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        preset = 'enter',
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
