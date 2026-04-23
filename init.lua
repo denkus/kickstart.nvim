@@ -593,7 +593,7 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client:supports_method('textDocument/documentHighlight', event.buf) then
+          if client and client.name ~= 'kotlin_language_server' and client:supports_method('textDocument/documentHighlight', event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -673,12 +673,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
 
-        kotlin_language_server = {
-          on_attach = function(client)
-            -- kotlin-language-server crashes on documentHighlight in some Gradle/Spring projects.
-            client.server_capabilities.documentHighlightProvider = false
-          end,
-        },
+        kotlin_language_server = {},
 
         stylua = {}, -- Used to format Lua code
 
