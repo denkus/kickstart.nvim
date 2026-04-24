@@ -171,6 +171,8 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set('n', '<leader>bn', '<cmd>enew<CR>', { desc = '[B]uffer [N]ew' })
+
 vim.keymap.set('n', '<leader>te', function()
   local listchars = vim.opt.listchars:get()
   if listchars.eol then
