@@ -171,6 +171,16 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.keymap.set('n', '<leader>te', function()
+  local listchars = vim.opt.listchars:get()
+  if listchars.eol then
+    listchars.eol = nil
+  else
+    listchars.eol = '↴'
+  end
+  vim.opt.listchars = listchars
+end, { desc = '[T]oggle [E]OL visibility' })
+
 -- Diagnostic Config & Keymaps
 -- See :help vim.diagnostic.Opts
 vim.diagnostic.config {
