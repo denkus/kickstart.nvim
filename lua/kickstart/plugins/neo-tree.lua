@@ -14,7 +14,19 @@ return {
   lazy = false,
   keys = {
     --{ '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    { '<leader>e', ':Neotree reveal<CR>', desc = 'Open Neotree', silent = true },
+    {
+      '<leader>e',
+      function()
+        if vim.bo.filetype == 'neo-tree' then
+          vim.cmd.wincmd 'p'
+          return
+        end
+
+        require('neo-tree.command').execute { action = 'focus', reveal = true }
+      end,
+      desc = 'Toggle Neo-tree focus',
+      silent = true,
+    },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
