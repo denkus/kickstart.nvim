@@ -685,7 +685,24 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
 
-        kotlin_language_server = {},
+        kotlin_language_server = {
+          root_markers = {
+            'settings.gradle',
+            'settings.gradle.kts',
+            'pom.xml',
+            'build.gradle',
+            'build.gradle.kts',
+            'build.xml',
+            'gradlew',
+            '.git',
+          },
+          init_options = {},
+          before_init = function(_, config)
+            -- Keep Kotlin's index/cache tied to the detected workspace, not whichever buffer loaded this config.
+            config.init_options = config.init_options or {}
+            config.init_options.storagePath = config.root_dir
+          end,
+        },
 
         stylua = {}, -- Used to format Lua code
 
@@ -763,7 +780,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, kotlin = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
