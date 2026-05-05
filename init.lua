@@ -135,6 +135,10 @@ vim.o.updatetime = 250
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
 
+-- Make Normal/Visual/Operator-pending mode commands work while the OS keyboard
+-- layout is Russian. This keeps insert-mode text input unchanged.
+vim.o.langmap = [[йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\;,э',яz,чx,сc,мv,иb,тn,ьm,ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х{,Ъ},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж:,Э",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM]]
+
 -- Configure how new splits should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
