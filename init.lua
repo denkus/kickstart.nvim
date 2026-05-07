@@ -246,6 +246,21 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'TextChangedI' }, {
+  desc = 'Detect JSON pasted into unnamed buffers',
+  group = vim.api.nvim_create_augroup('custom-detect-json-buffer', { clear = true }),
+  callback = function(args)
+    if vim.bo[args.buf].filetype ~= '' or vim.bo[args.buf].buftype ~= '' then return end
+    if vim.api.nvim_buf_get_name(args.buf) ~= '' then return end
+
+    local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
+    local text = table.concat(lines, '\n'):match '^%s*(.-)%s*$'
+    if text == '' or not text:match '^[%[{]' then return end
+
+    if pcall(vim.json.decode, text) then vim.bo[args.buf].filetype = 'json' end
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
