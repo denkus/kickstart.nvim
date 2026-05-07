@@ -129,6 +129,10 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.o.signcolumn = 'yes'
 
+-- Show the current project directory in terminal window titles.
+vim.o.title = true
+vim.o.titlestring = "%{fnamemodify(getcwd(), ':t')} : nvim"
+
 -- Decrease update time
 vim.o.updatetime = 250
 
