@@ -17,6 +17,12 @@ return {
     init = function()
       vim.o.showtabline = 2
     end,
+    keys = {
+      { ']b', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+      { '[b', '<cmd>BufferLineCyclePrev<CR>', desc = 'Previous buffer' },
+      { '<C-Tab>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
+      { '<C-S-Tab>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Previous buffer' },
+    },
     opts = {
       options = {
         mode = 'buffers',
